@@ -32,6 +32,25 @@ footer {
     width: 34px;
 }
 
+.dropdown-menu.fade {
+    transition: opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.mybtn {
+     background-color: #9999D2  ;
+     border-color: #9999D3;
+}
+
+.mybtn:hover {
+    background-color: #ffa1bb ;
+    border-color: #ffa3bb ;
+}
+
+.dropdown-menu.fade.show {
+    opacity: 1;
+}
+
 /* .navbar-nav-wrapper {
     margin-right: 5rem;
 } */

@@ -1,0 +1,37 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* etiquetas */
+
+body {
+    background-color: #FFEDF2;
+}
+
+nav i {
+    color: #ffedf2;
+}
+
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    text-align: center;
+}
+
+/* clases */
+
+.navbar-brand img {
+    max-height: 6rem;
+}
+
+.rrss {
+    width: 34px;
+}
+
+/* .navbar-nav-wrapper {
+    margin-right: 5rem;
+} */

@@ -15,10 +15,10 @@ nav i {
 }
 
 footer {
-    position: fixed;
+    position: absolute;
     bottom: 0;
     width: 100%;
-    padding: 20px;
+    padding: 1px;
     text-align: center;
 }
 
@@ -42,6 +42,11 @@ footer {
      border-color: #9999D3;
 }
 
+.mycard {
+    background-color: #edf2ff ;
+    border-color: #edf4ff ;
+}
+
 .mybtn:hover {
     background-color: #ffa1bb ;
     border-color: #ffa3bb ;
@@ -50,6 +55,7 @@ footer {
 .dropdown-menu.fade.show {
     opacity: 1;
 }
+
 
 /* .navbar-nav-wrapper {
     margin-right: 5rem;

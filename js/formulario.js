@@ -88,26 +88,36 @@ formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
     if(campos.nombre && campos.apellido && campos.correo && campos.contrasenna){
-        guardar();
-        formulario.reset();
-        campos['nombre'] = false;
-        campos['apellido'] = false;
-        campos['correo'] = false;
-        campos['contrasenna'] = false;        
-        document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
-        document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');        
-        setTimeout(() => {
-            document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
-        }, 5000)
+        if (correoUnico()){
+            guardar();
+            formulario.reset();
+            campos['nombre'] = false;
+            campos['apellido'] = false;
+            campos['correo'] = false;
+            campos['contrasenna'] = false;        
+            document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
+            document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');        
+            setTimeout(() => {
+                document.getElementById('formulario__mensaje-exito').classList.remove('formulario__mensaje-exito-activo');
+            }, 5000)
 
-        document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
-            icono.classList.remove('formulario__grupo-correcto');
-        });
+            document.querySelectorAll('.formulario__grupo-correcto').forEach((icono) => {
+                icono.classList.remove('formulario__grupo-correcto');
+            });
+
+            // Mostrar alerta de éxito
+            alert("Usuario creado correctamente.");
+
+            //redireccionamos al login para que haga efectivo su ingreso
+            window.location.href = "login.html";
+        }
+            
     } else {
         document.getElementById('formulario__mensaje').classList.add('formulario__mensaje-activo')
     }
 
 });
+
 
 
 //aqui se crea el usuario en localstorage
@@ -121,12 +131,25 @@ function guardar() {
         nombre: nombre,
         apellido: apellido,
         correo: correo,
-        contrasenna: contrasenna
+        contrasenna: contrasenna,
+        rol: "cliente"
     };
 
     let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
     usuarios.push(nuevoUsuario);
     localStorage.setItem('usuarios', JSON.stringify(usuarios));
+}
 
-    return false;
+//verificar duplicidad de correo
+function correoUnico() {
+    let correo = document.getElementById("EmailUser").value;
+    let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+
+    for (let i = 0; i < usuarios.length; i++) {
+        if (usuarios[i].correo === correo) {
+            alert("El correo electrónico ya está registrado.");
+            return false;
+        }
+    }
+    return true;
 }

@@ -87,14 +87,13 @@ inputs.forEach((input) => {
 formulario.addEventListener('submit', (e) => {
     e.preventDefault();
 
-    console.log('sas');
-
     if(campos.nombre && campos.apellido && campos.correo && campos.contrasenna){
+        guardar();
         formulario.reset();
         campos['nombre'] = false;
         campos['apellido'] = false;
         campos['correo'] = false;
-        campos['contrasenna'] = false;
+        campos['contrasenna'] = false;        
         document.getElementById('formulario__mensaje').classList.remove('formulario__mensaje-activo');
         document.getElementById('formulario__mensaje-exito').classList.add('formulario__mensaje-exito-activo');        
         setTimeout(() => {
@@ -109,3 +108,25 @@ formulario.addEventListener('submit', (e) => {
     }
 
 });
+
+
+//aqui se crea el usuario en localstorage
+function guardar() {
+    let nombre = document.getElementById("NombreUser").value;
+    let apellido = document.getElementById("ApellidoUser").value;
+    let correo = document.getElementById("EmailUser").value;
+    let contrasenna = document.getElementById("ContrasennaUser").value;
+
+    let nuevoUsuario = {
+        nombre: nombre,
+        apellido: apellido,
+        correo: correo,
+        contrasenna: contrasenna
+    };
+
+    let usuarios = JSON.parse(localStorage.getItem('usuarios')) || [];
+    usuarios.push(nuevoUsuario);
+    localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+    return false;
+}
